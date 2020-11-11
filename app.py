@@ -13,6 +13,6 @@ def execute(route_param):
 @app.route("/account/create", methods=["PUT"])
 def create_account():
   data = request.get_json().strip()
-  hashed_pass = hashlib.md5(data.get("password"))
+  hashed_pass = hashlib.sha256(data.get("password"))
   db_add_user_info(data.get("username"), hashed_pass)
   return jsonify(status="success"), 201
